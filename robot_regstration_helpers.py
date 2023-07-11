@@ -33,10 +33,17 @@ def add_mappings(robot_name,map_of_sensors,node,mapping_type):
 
         req = AddMapping.Request()
         req.name = robot_name
-        req.source = map_of_sensors[sensor]["source"]
-        req.destination = map_of_sensors[sensor]["destination"]
+
+        if mapping_type=="ros_kafka":
+            req.ros_topic = map_of_sensors[sensor]["source"]
+            req.kafka_topic = map_of_sensors[sensor]["destination"]
+        else:
+            req.kafka_topic = map_of_sensors[sensor]["source"]
+            req.ros_topic = map_of_sensors[sensor]["destination"]
         req.type = map_of_sensors[sensor]["type"]
 
+
+        
         # Call the service
         future = client.call_async(req)
         rclpy.spin_until_future_complete(node, future)
