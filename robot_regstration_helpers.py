@@ -53,8 +53,11 @@ def call_add_mapping_service(robot_name,robot_type,node):
     #node = rclpy.create_node('registration_node')
 
     #get correct mappings
+    mappings_path="exemplary_mappings.yaml"
+
     topic_mapper= mapping_aid.RobotRegistration(robot_name,robot_type)
-    ros_to_kafka_mapings, kafka_to_ros_mappings=topic_mapper.setup_callback()
+    ros_to_kafka_mapings, kafka_to_ros_mappings=topic_mapper.setup_callback(mappings_path)
+
 
     print("to kafka")
     add_mappings_to_kafka(robot_name,ros_to_kafka_mapings,node)
@@ -67,14 +70,4 @@ def call_add_mapping_service(robot_name,robot_type,node):
     #rclpy.shutdown()
 
 
-
-def quick_test():
-    #robot_name="my_new_robot"
-    #topic_mapper= mapping_aid.RobotRegistration("my_turtle1","turtlesim")
-    #ros_to_kafka_mapings, kafka_to_ros_mappings=mapping_aid.setup_callback(robot_name)
-    #print(ros_to_kafka_mapings)
-    #print(kafka_to_ros_mappings)
-
-    call_add_mapping_service("dieter","turtlesim")
-    call_add_mapping_service("klaus","turtlesim")
 

@@ -13,9 +13,10 @@ class RobotRegistration(Node):
         self.robot_name=robot_name
         self.robot_type=robot_type
 
-    def setup_callback(self):
-        kafka_to_ros_yaml = self.setup_kafka_to_ros()
-        ros_to_kafka_yaml = self.setup_ros_to_kafka()
+    def setup_callback(self,file_path):
+        file_path=str(file_path)
+        kafka_to_ros_yaml = self.setup_kafka_to_ros(active_yaml_path=file_path)
+        ros_to_kafka_yaml = self.setup_ros_to_kafka(active_yaml_path=file_path)
         return(ros_to_kafka_yaml,kafka_to_ros_yaml)
 
     def get_generic_ros_to_kafka_mappings(self,yaml_path="exemplary_mappings.yaml"):
@@ -70,7 +71,7 @@ class RobotRegistration(Node):
             results[self.robot_name+"/"+key]=newValue
         return results
 
-    def setup_kafka_to_ros(self,generic_yaml_path="exemplary_mappings.yaml",active_yaml_path="example_kafka_to_ros.yaml"):
+    def setup_kafka_to_ros(self,active_yaml_path="example_kafka_to_ros.yaml"):
         with open(active_yaml_path,'r') as yamlfile:
             #get the current dictionary from the active vaml file and add the new data
             cur_yaml = yaml.safe_load(yamlfile) 
