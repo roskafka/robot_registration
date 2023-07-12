@@ -14,20 +14,17 @@ class RobotRegistrationNode(Node):
     def __init__(self):
         super().__init__('robot_registration_node')
         self.publisher_ = self.create_publisher(String, '/robotRegistration', 10)
-        
-        #self.registration_callback("turtlesim","dieter")
-        #self.registration_callback("turtlesim","klaus")
-        
+
         input_value=""
         while(input_value != "stop" ):
-            
+
             input_value=input("enter a new robot_type/robot_name pair: ")
             if input_value=="stop" :
                 break
             name=input_value.split("/")[1]
             type=input_value.split("/")[0]
             self.registration_callback(type,name)
-       
+
 
     def registration_callback(self,robot_type,robot_name):
         msg = String()
