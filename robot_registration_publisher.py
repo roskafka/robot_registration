@@ -5,7 +5,7 @@ import mapping_aid
 from collections import Counter
 from rclpy.node import Node
 from std_msgs.msg import String
-import robot_regstration_helpers as registration
+import robot_registration_helpers as registration
 
 
 
