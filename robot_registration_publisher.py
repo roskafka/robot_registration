@@ -15,7 +15,7 @@ class RobotRegistrationNode(Node):
         super().__init__('robot_registration_node')
         self.publisher_ = self.create_publisher(String, '/robotRegistration', 10)
         
-        self.registration_callback("turtlesim","dieter")
+        #self.registration_callback("turtlesim","dieter")
         #self.registration_callback("turtlesim","klaus")
         
         input_value=""
