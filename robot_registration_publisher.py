@@ -42,7 +42,7 @@ def main(args=None):
     rclpy.init(args=args)
     node = RobotRegistrationNode()
     rclpy.spin(node)
-    print("pess enter to close Node")
+    print("press enter to close node")
     input()
     rclpy.shutdown()
 
