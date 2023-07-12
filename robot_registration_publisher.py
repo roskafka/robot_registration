@@ -21,7 +21,7 @@ class RobotRegistrationNode(Node):
         input_value=""
         while(input_value != "stop" ):
             
-            input_value=input("enter a new robot_type/robot_name pair")
+            input_value=input("enter a new robot_type/robot_name pair: ")
             if input_value=="stop" :
                 break
             name=input_value.split("/")[1]
