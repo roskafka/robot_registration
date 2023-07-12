@@ -1,32 +1,18 @@
-/ros_kafka_bridge: #nachrichten von ros zu Kafka
+/ros_kafka_bridge: # Messages from ROS to Kafka
   generic_mappings:
-    turtlesim: #art des Roboters,der registriert wird
-      sensor_1:
+    turtlesim: # Type of the robot
+      position: # name of the mapping
         source: /X/pose
-        destination: positions
+        destination: roskafka-positions
         type: turtlesim/msg/Pose
-      sensor_2:
-        source: /X/pose
-        destination: /X/secondPose
-        type: turtlesim/msg/Pose
-    autobot: #beispiel name 
-      lidar1: #beispiel sensor Name 
-        source: example #name of ROS Topic
-        destination: examle #name of kaka topic 
-        type: example #name des nachrichten typd
-/kafka_ros_bridge: #Nachrichten von Kafka zu ROS
+/kafka_ros_bridge: # Messages from Kafka to ROS
   generic_mappings:
-    autobot:
-      cammera:
-        source: /X/kafka_topic_name # name of Kafka Topic
-        destination: ros_target #name of ros topic
-        type:  turtlesim/msg/Pose #type of message 
     turtlesim:
-      sensor3:
-        source: /X/movementCommands
-        destination: /X/repeatedMovementCommands
-        type: geometry_msgs/msg/Twist #meta: map [robot,topic,type], payload:[Twist]
-      sensor5:
-        source: _backgroundcolor
+      movement:
+        source: kafkaros-movementCommands
+        destination: /${key}/repeatedMovementCommands
+        type: geometry_msgs/msg/Twist
+      backgroundcolor:
+        source: kafkaros-backgroundcolor
         destination: /turtlesim_background
         type: turtlesim/msg/Color
